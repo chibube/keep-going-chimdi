@@ -7,7 +7,8 @@ from flask_migrate import Migrate
 app = create_app(os.getenv('FLASK_CONFIG') or 'default') #the script begins by creating
 #an application requirement. The config is taken from the environment variable
 #FLASK_CONFIG if it is defined
-migrate = Migrate(app,db)
+migrate = Migrate(app,db) #you will have to delete the old table to make changes but with migrate
+#migrate keeps track of the changes in the database schema, allowing incremental changes to be applied
 
 @app.shell_context_processor
 def make_shell_context():

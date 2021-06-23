@@ -28,11 +28,11 @@ class User(UserMixin, db.Model):
     #when 2 or more decorators are used in 1 function, each decorator only affects those that are blow it in addition to
     #the target function.
     def password(self):
-        raise AttributeError('password is not a readable attribute')
+        raise AttributeError('password is not a readable attribute') #any attempt to read the password property raises an error
 
-    @password.setter #this is a setter method that calls werkzeug's gen_password func
+    @password.setter #this is a setter method that calls werkzeug's gen_password function, it takes the user's password and encrypts it
     def password(self, password):
-        self.password_hash = generate_password_hash(password)
+        self.password_hash = generate_password_hash(password)#here the password hash is generated and passed into the db model above for each user
 
     def verify_password(self, password):#takes a password & passes it to werkzeug's
         #check_password_hash() function for verification against the hashed ver. stored in the User model
