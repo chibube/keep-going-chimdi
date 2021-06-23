@@ -71,7 +71,7 @@ def register():
 def confirm(token):
     if current_user.confirmed: #checks if the logged in user is confirmed and if yes, redirects to homepage
         return redirect(url_for('main.index'))
-    if current_user.confirmed(token):
+    if current_user.confirm(token):
         db.session.commit()
         flash('You have confirmed your account. Thanks')
     else:
